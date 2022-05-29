@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Card = ({ ipInfo }) => {
   const { region, city, ip } = ipInfo

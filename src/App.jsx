@@ -1,19 +1,13 @@
-import useGetIpInfo from './hooks/useGetIpInfo'
-import { Map } from './components/Map'
+import IpProvider from './context/IpContext'
+import IpTracker from './components/IpTracker'
 import './App.css'
-import Header from './components/Header'
+
 function App () {
-  const { ipInfo, loading, coordinates } = useGetIpInfo()
-  console.log(coordinates)
   return (
     <div className='App'>
-      {loading && <>Cargando</>}
-      {!loading &&
-        <div>
-          <Header ipInfo={ipInfo} />
-          <Map coordinates={coordinates} zoom='15' />
-        </div>
-      }  
+      <IpProvider>
+        <IpTracker />
+      </IpProvider>
     </div>
   )
 }

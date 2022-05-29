@@ -6,7 +6,7 @@ const Header = ({ ipInfo }) => {
   return (
     <div className='header'>
       <h2>IP Tracker</h2>
-      <IpForm ipInfo={ipInfo} />
+      <IpForm />
       <Card ipInfo={ipInfo} />
     </div>
   )

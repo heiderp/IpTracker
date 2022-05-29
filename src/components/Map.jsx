@@ -2,7 +2,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 import React from 'react'
 
-export const Map = ({ coordinates, zoom }) => {
+const Map = ({ coordinates, zoom }) => {
   return (
     <MapContainer center={[coordinates.lat, coordinates.lon]} zoom={zoom}>
       <TileLayer
@@ -17,3 +17,5 @@ export const Map = ({ coordinates, zoom }) => {
     </MapContainer>
   )
 }
+
+export default Map

@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-const GetIpInfo = async () => {
+const GetIpInfo = async (ip) => {
   try {
-    const response = await axios.get('https://ipinfo.io/45.186.145.221?token=e0af27ff7c7ae9')
+    const url = `https://ipinfo.io/${ip}?token=e0af27ff7c7ae9`
+    const response = await axios.get(url)
     return response
   } catch (error) {
     return error

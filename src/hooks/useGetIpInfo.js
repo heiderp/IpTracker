@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
 import GetIpInfo from '../services/GetIpInfo'
-const useGetIpInfo = () => {
+const useGetIpInfo = (ip = '8.8.8.8') => {
   const [loading, setLoading] = useState(true)
   const [ipInfo, setIpInfo] = useState({})
   const [coordinates, setCoordinates] = useState({})
-
   useEffect(() => {
-    GetIpInfo()
+    GetIpInfo(ip)
       .then(res => {
-        console.log()
         const ubicacionString = res.data.loc.toString().split(',')
         const ubicacionNumber = ubicacionString.map(el => Number(el))
-        setLoading(!loading)
+        setLoading(false)
         setIpInfo(res.data)
         setCoordinates({ lat: ubicacionNumber[0], lon: ubicacionNumber[1] })
       })
       .catch(error => console.log(error))
-  }, [])
+  }, [ip])
+
   return { loading, ipInfo, coordinates }
 }
 
