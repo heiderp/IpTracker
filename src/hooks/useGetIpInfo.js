@@ -8,6 +8,7 @@ const useGetIpInfo = () => {
   useEffect(() => {
     GetIpInfo()
       .then(res => {
+        console.log()
         const ubicacionString = res.data.loc.toString().split(',')
         const ubicacionNumber = ubicacionString.map(el => Number(el))
         setLoading(!loading)

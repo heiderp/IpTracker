@@ -11,7 +11,7 @@ export const Map = ({ coordinates, zoom }) => {
       />
       <Marker position={[coordinates.lat, coordinates.lon]}>
         <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
+          There's here.
         </Popup>
       </Marker>
     </MapContainer>
