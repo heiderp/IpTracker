@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { IpContext } from '../context/IpContext'
 
-const IpForm = () => {
+const IpForm = ({ ipError }) => {
   const { updateIp } = useContext(IpContext)
   const [ipSelected, setIpSelected] = useState('')
 
@@ -23,7 +23,7 @@ const IpForm = () => {
           type='text'
           className='header-form-input'
           value={ipSelected}
-          placeholder='ej. 8.8.8.8'
+          placeholder='Ejm. 8.8.8.8'
           onChange={(e) => handleChange(e)}
         />
         <button type='submit' className='header-form-submit'>Buscar</button>

@@ -13,7 +13,7 @@ const useGetIpInfo = (ip = '8.8.8.8') => {
         setIpInfo(res.data)
         setCoordinates({ lat: ubicacionNumber[0], lon: ubicacionNumber[1] })
       })
-      .catch(error => console.log(error))
+      .catch(error => error.response && console.log(error.response.data))
   }, [ip])
 
   return { loading, ipInfo, coordinates }

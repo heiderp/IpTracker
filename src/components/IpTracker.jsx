@@ -9,7 +9,6 @@ const IpTracker = () => {
   return (
     <div>
       <Header ipInfo={ipInfo} />
-      {loading && <p>Loading</p>}
       {!loading && <Map coordinates={coordinates} zoom='15' />}
       {/* */}
     </div>
