@@ -5,6 +5,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Prompt', sans-serif;
 }
 .leaflet-container {
   width: 100%;
@@ -54,6 +55,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.header-title{
+
 }
 .header-form {
   margin-top: 15px;
