@@ -1,6 +1,6 @@
-import React from "react";
-import Card from "./Card";
-import IpForm from "./IpForm";
+import React from 'react'
+import Card from './Card'
+import IpForm from './IpForm'
 
 const Header = ({ ipInfo }) => {
   return (
@@ -9,7 +9,7 @@ const Header = ({ ipInfo }) => {
       <IpForm />
       <Card ipInfo={ipInfo} />
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

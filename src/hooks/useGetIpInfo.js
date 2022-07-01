@@ -5,15 +5,16 @@ const useGetIpInfo = (ip = '8.8.8.8') => {
   const [ipInfo, setIpInfo] = useState({})
   const [coordinates, setCoordinates] = useState({})
   useEffect(() => {
+    setLoading(true)
     GetIpInfo(ip)
-      .then(res => {
+      .then((res) => {
         const ubicacionString = res.data.loc.toString().split(',')
-        const ubicacionNumber = ubicacionString.map(el => Number(el))
+        const ubicacionNumber = ubicacionString.map((el) => Number(el))
         setLoading(false)
         setIpInfo(res.data)
         setCoordinates({ lat: ubicacionNumber[0], lon: ubicacionNumber[1] })
       })
-      .catch(error => error.response && console.log(error.response.data))
+      .catch((error) => error.response && console.log(error.response.data))
   }, [ip])
 
   return { loading, ipInfo, coordinates }

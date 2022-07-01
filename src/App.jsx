@@ -1,7 +1,7 @@
-import IpProvider from "./context/IpContext";
-import IpTracker from "./components/IpTracker";
-import "./styles/normalize.css";
-import "./styles/App.css";
+import IpProvider from './context/IpContext'
+import IpTracker from './components/IpTracker'
+import './styles/normalize.css'
+import './styles/App.css'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         <IpTracker />
       </IpProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

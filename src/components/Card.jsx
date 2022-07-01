@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react'
 const Card = ({ ipInfo }) => {
-  const { region, city, ip } = ipInfo;
+  const { region, city, ip } = ipInfo
   return (
     <div className="header-card">
       <div className="header-card-detail">
@@ -16,7 +16,7 @@ const Card = ({ ipInfo }) => {
         <p className="header-card-detail-type">{city}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
