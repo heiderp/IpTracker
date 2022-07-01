@@ -1,15 +1,15 @@
-import React from 'react'
-import Card from './Card'
-import IpForm from './IpForm'
+import React from "react";
+import Card from "./Card";
+import IpForm from "./IpForm";
 
-const Header = ({ ipInfo, ipError }) => {
+const Header = ({ ipInfo }) => {
   return (
-    <div className='header'>
+    <div className="header">
       <h2>IP Tracker</h2>
       <IpForm />
       <Card ipInfo={ipInfo} />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
