@@ -1,23 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import GetIpInfo from '../services/GetIpInfo'
-const useGetIpInfo = (ip = '8.8.8.8') => {
-  const [loading, setLoading] = useState(true)
-  const [ipInfo, setIpInfo] = useState({})
+const useGetIpInfo = () => {
+  const [query, setQuery] = useState({
+    isLoading: false,
+    data: null,
+    error: null
+  })
   const [coordinates, setCoordinates] = useState({})
-  useEffect(() => {
-    setLoading(true)
+  function hasBogon(res) {
+    if (res.hasOwnProperty('bogon')) {
+      const error = { name: 'bogon' }
+      setQuery(prev => ({ ...prev, isLoading: false, error }))
+    }
+  }
+  function hasCoordinate(res) {
+    if (
+      res.hasOwnProperty('loc')
+    ) {
+      const ubicacionString = res.loc.toString().split(',')
+      const ubicacionNumber = ubicacionString.map((el) => Number(el))
+      const [latitud, longitud] = ubicacionNumber
+      setQuery(prev => ({ ...prev, isLoading: false, data: res }))
+      setCoordinates({ latitud, longitud })
+    }
+  }
+  function getIpData(ip) {
+    setQuery({ data: null, error: null, isLoading: true })
     GetIpInfo(ip)
       .then((res) => {
-        const ubicacionString = res.data.loc.toString().split(',')
-        const ubicacionNumber = ubicacionString.map((el) => Number(el))
-        setLoading(false)
-        setIpInfo(res.data)
-        setCoordinates({ lat: ubicacionNumber[0], lon: ubicacionNumber[1] })
+        hasBogon(res)
+        hasCoordinate(res)
       })
-      .catch((error) => error.response && console.log(error.response.data))
-  }, [ip])
-
-  return { loading, ipInfo, coordinates }
+      .catch(() => {
+        setQuery(prev => ({ ...prev, isLoading: false, error: 'unknow' }))
+      })
+  }
+  const states = { query, coordinates }
+  const handles = {
+    getIpData
+  }
+  return {
+    states,
+    handles
+  }
 }
 
 export default useGetIpInfo
