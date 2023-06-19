@@ -1,15 +1,19 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import React, { useContext } from 'react'
+import { IpContext } from '../context/IpContext'
 
-import React from 'react'
+const Map = ({ zoom = '15' }) => {
+  const { states: { coordinates } } = useContext(IpContext)
+  const { latitud, longitud } = coordinates
+  const position = [latitud, longitud]
 
-const Map = ({ coordinates, zoom }) => {
   return (
-    <MapContainer center={[coordinates.lat, coordinates.lon]} zoom={zoom}>
+    <MapContainer center={position} zoom={zoom}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[coordinates.lat, coordinates.lon]}>
+      <Marker position={position}>
         <Popup>There's here.</Popup>
       </Marker>
     </MapContainer>
