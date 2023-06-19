@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BoxLoader = () => {
+const Loader = () => {
   return (
     <div className="box-loader">
       <div className="loader" />
@@ -8,4 +8,4 @@ const BoxLoader = () => {
   )
 }
 
-export default BoxLoader
+export default Loader

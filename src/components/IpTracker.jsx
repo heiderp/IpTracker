@@ -1,17 +1,21 @@
 import React, { useContext } from 'react'
 import { IpContext } from '../context/IpContext'
-import useGetIpInfo from '../hooks/useGetIpInfo'
-import BoxLoader from './BoxLoader'
+import LoaderPanel from './LoaderPanel'
 import Header from './Header'
-import Map from './Map'
+import ErrorPanel from './ErrorPanel'
+import MapPanel from './MapPanel'
+import InitialPanel from './InitialPanel'
 const IpTracker = () => {
-  const { ipFound } = useContext(IpContext)
-  const { coordinates, ipInfo, loading } = useGetIpInfo(ipFound)
+  const { states: { query } } = useContext(IpContext)
+  const { data, isLoading, error } = query
+
   return (
     <div>
-      <Header ipInfo={ipInfo} />
-      {loading && <BoxLoader />}
-      {!loading && <Map coordinates={coordinates} zoom="15" />}
+      <Header />
+      {error && <ErrorPanel />}
+      {isLoading && <LoaderPanel />}
+      {!data && !error && <InitialPanel />}
+      {data && <MapPanel />}
     </div>
   )
 }
