@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, lazy, Suspense } from 'react'
 import { IpContext } from '../context/IpContext'
-import LoaderPanel from './LoaderPanel'
 import Header from './Header'
-import ErrorPanel from './ErrorPanel'
-import MapPanel from './MapPanel'
 import InitialPanel from './InitialPanel'
+
+const LoaderPanel = lazy(() => import('./LoaderPanel'))
+const ErrorPanel = lazy(() => import('./ErrorPanel'))
+const MapPanel = lazy(() => import('./MapPanel'))
+
 const IpTracker = () => {
   const { states: { query } } = useContext(IpContext)
   const { data, isLoading, error } = query
@@ -12,10 +14,12 @@ const IpTracker = () => {
   return (
     <div>
       <Header />
-      {error && <ErrorPanel />}
-      {isLoading && <LoaderPanel />}
       {!data && !error && <InitialPanel />}
-      {data && <MapPanel />}
+      <Suspense>
+        {error && <ErrorPanel />}
+        {isLoading && <LoaderPanel />}
+        {data && <MapPanel />}
+      </Suspense>
     </div>
   )
 }

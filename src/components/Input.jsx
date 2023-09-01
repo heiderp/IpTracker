@@ -6,6 +6,7 @@ const Input = forwardRef(({ isInvalid, ...props }, ref) => {
     "form-input": true,
     'form-input-invalid': isInvalid
   })
+
   return (
     <input
       ref={ref}
@@ -15,5 +16,5 @@ const Input = forwardRef(({ isInvalid, ...props }, ref) => {
     />
   )
 })
-
 export default Input
+

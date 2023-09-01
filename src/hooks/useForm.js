@@ -1,33 +1,51 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext } from 'react'
 import { IpContext } from '../context/IpContext'
 import regex from '../utils/regExp'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 
-export default function useForm() {
+const ipSchema = z.object({
+  ip: z.string().regex(regex, { message: 'Invalida direccion ip.' }).min(1)
+})
+
+export default function useIpForm() {
   const { handles: { getIpData } } = useContext(IpContext)
   const { states: { query: { isLoading } } } = useContext(IpContext)
-  const ipRef = useRef('')
-  const [isInvalid, setIsInvalid] = useState(false)
-
-  function validateIp(ip) {
-    const value = ip.trim()
-    return regex.test(value)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsInvalid(false)
-    const ipValue = ipRef.current?.value
-    if (!validateIp(ipValue)) {
-      setIsInvalid(true)
-      return
-    }
-    getIpData(ipValue)
-  }
-
-  return ({
-    ipRef,
-    isInvalid,
-    isLoading,
-    handleSubmit
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors, isDirty, isValid }
+  } = useForm({
+    defaultValues: { ip: '' },
+    reValidateMode: 'onChange',
+    mode: 'onTouched',
+    resolver: zodResolver(ipSchema)
   })
+
+  const handleSeachIp = (data) => {
+    const value = data.ip
+    getIpData(value)
+    reset()
+  }
+
+  const handleForm = handleSubmit(handleSeachIp)
+
+  const formContext = {
+    register,
+    errors,
+    isDirty,
+    isValid
+  }
+
+  return {
+    register,
+    errors,
+    isLoading,
+    handleForm,
+    formContext,
+    isDirty,
+    isValid
+  }
 }

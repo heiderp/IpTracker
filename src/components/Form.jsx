@@ -1,30 +1,32 @@
 import React from 'react'
-import useForm from '../hooks/useForm'
-import Input from './Input'
-import Button from './Button'
+import useForm from '@hooks/useForm'
+import Input from '@components/InputWithContext'
+import Button from '@components/Button'
+import { FormProvider } from 'react-hook-form'
 
 const Form = () => {
   const {
-    ipRef,
+    formContext,
+    handleForm,
     isLoading,
-    isInvalid,
-    handleSubmit
+    isDirty,
+    isValid
   } = useForm()
+  console.log(formContext)
 
   return (
-    <>
-      <form className="form" onSubmit={handleSubmit}>
+    <FormProvider {...formContext} >
+      <form className="form" onSubmit={handleForm}>
         <Input
-          ref={ipRef}
+          name='ip'
           placeholder="Ejm. 8.8.8.8"
-          isInvalid={isInvalid}
           disabled={isLoading}
         />
-        <Button disabled={isLoading}>
+        <Button disabled={!isDirty || !isValid || isLoading}>
           Buscar
         </Button>
       </form>
-    </>
+    </FormProvider>
   )
 }
 
