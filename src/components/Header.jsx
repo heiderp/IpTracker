@@ -1,10 +1,10 @@
 import React from 'react'
-import Form from './Form'
+import Form from '@components/Form'
 
 const Header = () => {
   return (
     <div className="header">
-      <h2 className="header-title">Ip Tracker</h2>
+      <h2 className="header-title">IP Address Tracker</h2>
       <Form />
     </div>
   )
