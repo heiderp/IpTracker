@@ -12,7 +12,6 @@ const Form = () => {
     isDirty,
     isValid
   } = useForm()
-  console.log(formContext)
 
   return (
     <FormProvider {...formContext} >
