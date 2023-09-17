@@ -7,7 +7,7 @@ export default function Modal({ title = '', onClose, children }) {
       <div className="modal-wrapper">
         <div className="modal-header">
           <h3>{title}</h3>
-          <button onClick={onClose}>X</button>
+          <button className='modal-close' onClick={onClose}>X</button>
         </div>
         <div className="modal-content">{elements}</div>
       </div>
