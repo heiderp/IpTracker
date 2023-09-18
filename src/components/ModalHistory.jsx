@@ -19,7 +19,11 @@ export default function ModalHistory() {
         {hasRecords ? (
           <ListHistory history={historySorted} />
         ) : (
-          <button>Empty</button>
+          <div
+            className='history-empty'
+          >
+            Vacio
+          </div>
         )}
       </div>
     </Modal>

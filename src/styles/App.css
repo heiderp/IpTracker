@@ -278,6 +278,10 @@
   flex-direction: column;
   gap: 1rem;
 }
+.history-empty {
+  width: 100%;
+  text-align: center;
+}
 .history-icon {
   filter: invert(1);
 }
